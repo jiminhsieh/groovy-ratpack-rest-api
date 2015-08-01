@@ -1,10 +1,7 @@
 package Service
 
 import POJO.TestCount
-import POJO.TestResult
 import groovy.transform.CompileStatic
-
-import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * Created by jimin on 7/28/15.
