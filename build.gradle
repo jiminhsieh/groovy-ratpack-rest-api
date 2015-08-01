@@ -1,0 +1,32 @@
+group 'REST-API'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        maven { url "http://oss.jfrog.org/artifactory/repo" }
+        jcenter()
+    }
+    dependencies {
+        classpath 'io.ratpack:ratpack-gradle:0.9.18'
+    }
+}
+
+apply plugin: "io.ratpack.ratpack-groovy"
+apply plugin: "idea"
+
+repositories {
+    jcenter()
+    maven { url "https://oss.jfrog.org/repo" }
+}
+
+dependencies {
+    compile ratpack.dependency("h2")
+    compile ratpack.dependency("hikari")
+    compile ratpack.dependency("jackson-guice")
+    compile ratpack.dependency("remote")
+    compile ratpack.dependency("codahale-metrics")
+    compile ratpack.dependency("rx")
+    compile ratpack.dependency("hystrix")
+    compile ratpack.dependency("pac4j")
+    runtime 'org.slf4j:slf4j-simple:1.7.7'
+}
