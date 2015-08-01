@@ -22,7 +22,9 @@ idea {
             withXml { provider ->
                 def node = provider.asNode()
                 //configure git support for the project in idea
-                node.component.find { it.'@name' == 'VcsDirectoryMappings' }?.mapping[0].'@vcs' = 'Git'
+                node.component.find {
+                    it.'@name' == 'VcsDirectoryMappings'
+                }?.mapping[0].'@vcs' = 'Git'
             }
         }
     }
@@ -43,4 +45,9 @@ dependencies {
     compile ratpack.dependency("hystrix")
     compile ratpack.dependency("pac4j")
     runtime 'org.slf4j:slf4j-simple:1.7.7'
+}
+
+run {
+    jvmArgs "-Dratpack.port=9090"
+    jvmArgs "-XX:+TieredCompilation"
 }
