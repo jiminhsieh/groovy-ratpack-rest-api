@@ -18,7 +18,7 @@ class SearchServiceImpl implements SearchService {
         keyword = keyword.replaceAll("\\s+", "+")
 
         // Generate Test Case from sample
-        def sampleFile = new File("/root/Repository/robotframework-test-plan/google-search-test" +
+        File sampleFile = new File("/root/Repository/robotframework-test-plan/google-search-test" +
                 "-case/search_result.txt")
 
         // create directory to store each test case
@@ -30,7 +30,7 @@ class SearchServiceImpl implements SearchService {
         String testCaseLocation = storedLocation + "/search_result.txt"
         println("storedLocation = " + storedLocation)
         println("testCaseLocation = " + testCaseLocation)
-        def storedFile = new File(testCaseLocation)
+        File storedFile = new File(testCaseLocation)
         String fileText = sampleFile.text
         String testCase = fileText.replaceAll("keyword", keyword)
         storedFile.write(testCase)

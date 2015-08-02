@@ -22,7 +22,7 @@ ratpack {
             render "Hello World!"
         }
 
-        get(":keyword") { SearchService searchService ->
+        get("google-search:keyword") { SearchService searchService ->
             println("$pathTokens.keyword")
             StringBuilder response = new StringBuilder("The Result is ")
             if (searchService.search("$pathTokens.keyword")) {
