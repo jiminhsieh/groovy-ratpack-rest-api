@@ -24,12 +24,13 @@ class SearchServiceImpl implements SearchService {
         keyword = keyword.replaceAll("\\s+", "+")
 
         // Generate Test Case from sample
-        def sampleFile = new File("~/Repository/robotframework-test-plan/google-search-test-case/search_result.txt")
+        def sampleFile = new File("/root/Repository/robotframework-test-plan/google-search-test" +
+                "-case/search_result.txt")
 
-        ("mkdir ~/TestCases").execute()
-        ("mkdir ~/TestCases/" + folderName).execute()
+        ("mkdir /root/TestCases").execute()
+        ("mkdir /root/TestCases/" + folderName).execute()
 
-        String storedLocation = "~/TestCases/" + folderName;
+        String storedLocation = "/root/TestCases/" + folderName;
         String testCaseLocation = storedLocation + "/search_result.txt"
         println("testCaseLocation = " + testCaseLocation)
         println(testCaseLocation)
@@ -37,13 +38,13 @@ class SearchServiceImpl implements SearchService {
         def fileText = sampleFile.text
         fileText = fileText.replaceAll("keyword", keyword)
         storedFile.write(fileText)
-        ("cp ~/Repository/robotframework-test-plan/google-search-test-case/variables.txt "
+        ("cp /root/Repository/robotframework-test-plan/google-search-test-case/variables.txt "
                 + storedLocation).execute()
 
         println("Execute Robot Framework")
         // Execute Robot Framework
         ("cd " + storedLocation).execute()
-        String robotframework = "~/Repository/robotframework-httplibrary/bin/robotframework";
+        String robotframework = "/root/Repository/robotframework-httplibrary/bin/robotframework";
 
         println("Prepare execute test case")
         println("CMD = " + robotframework + " " + testCaseLocation)
