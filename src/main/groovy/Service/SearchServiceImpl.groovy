@@ -43,7 +43,6 @@ class SearchServiceImpl implements SearchService {
 
         println("Execute Robot Framework")
         // Execute Robot Framework
-        ("cd " + storedLocation).execute()
         String robotframework = "/root/Repository/robotframework-httplibrary/bin/robotframework";
 
         println("Prepare execute test case")
