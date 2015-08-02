@@ -23,13 +23,10 @@ class SearchServiceImpl implements SearchService {
 
         // create directory to store each test case
         ("mkdir /root/TestCases/" + folderName).execute()
-        println(("ls /root/TestCases").execute().text)
 
         // prepare test case
         String storedLocation = "/root/TestCases/" + folderName;
         String testCaseLocation = storedLocation + "/search_result.txt"
-        println("storedLocation = " + storedLocation)
-        println("testCaseLocation = " + testCaseLocation)
         File storedFile = new File(testCaseLocation)
         String fileText = sampleFile.text
         String testCase = fileText.replaceAll("keyword", keyword)
