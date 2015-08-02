@@ -20,6 +20,7 @@ class SearchServiceImpl implements SearchService {
 
     @Override
     boolean search(String keyword) {
+        println("### SearchService.search START ###")
         int folderName = TestCount.testCount.addAndGet(1);
         keyword = keyword.replaceAll("\\s+", "+")
 
@@ -36,7 +37,9 @@ class SearchServiceImpl implements SearchService {
         def storedFile = new File(testCaseLocation)
         def fileText = sampleFile.text
         fileText = fileText.replaceAll("keyword", keyword)
+        println("After storing test case")
         storedFile.write(fileText)
+        println("Before storing test case")
         ("cp /root/Repository/robotframework-test-plan/google-search-test-case/variables.txt "
                 + storedLocation).execute()
 
@@ -52,6 +55,7 @@ class SearchServiceImpl implements SearchService {
         boolean result = testResult.contains("0 failed") == true ? false : true;
 
         //return result
+        println("### SearchService.search START ###")
         return result
     }
 }
