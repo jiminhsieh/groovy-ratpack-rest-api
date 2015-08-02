@@ -13,7 +13,6 @@ class SetupModule extends AbstractModule{
 
     @Override
     protected void configure() {
-        println("SetupModule SETUP")
         bind(SearchService.class).to(SearchServiceImpl.class)
     }
 }

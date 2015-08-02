@@ -3,7 +3,6 @@ import Service.SearchService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import ratpack.jackson.guice.JacksonModule;
-import static ratpack.jackson.Jackson.jsonNode
 import static ratpack.groovy.Groovy.ratpack
 
 /**
@@ -14,14 +13,12 @@ final Logger log = LoggerFactory.getLogger(ratpack.class);
 
 ratpack {
     bindings {
-        println("### bindings ###")
         new JacksonModule()
         module SetupModule
     }
 
     handlers {
         get {
-            println("Render Hellow World")
             render "Hello World!"
         }
 
@@ -37,11 +34,5 @@ ratpack {
 
             render(response)
         }
-
-        post("foo") {
-            def postBody = parse jsonNode()
-            render "Hello world! ${postBody.person}"
-        }
-
     }
 }
