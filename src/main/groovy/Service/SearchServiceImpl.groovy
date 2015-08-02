@@ -27,7 +27,6 @@ class SearchServiceImpl implements SearchService {
         def sampleFile = new File("/root/Repository/robotframework-test-plan/google-search-test" +
                 "-case/search_result.txt")
 
-        ("mkdir /root/TestCases").execute()
         ("mkdir /root/TestCases/" + folderName).execute()
 
         String storedLocation = "/root/TestCases/" + folderName;
