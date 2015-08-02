@@ -32,8 +32,8 @@ class SearchServiceImpl implements SearchService {
 
         String storedLocation = "/root/TestCases/" + folderName;
         String testCaseLocation = storedLocation + "/search_result.txt"
+        println("storedLocation = " + storedLocation)
         println("testCaseLocation = " + testCaseLocation)
-        println(testCaseLocation)
         def storedFile = new File(testCaseLocation)
         def fileText = sampleFile.text
         fileText = fileText.replaceAll("keyword", keyword)
