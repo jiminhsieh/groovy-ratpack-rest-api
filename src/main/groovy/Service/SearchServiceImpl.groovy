@@ -29,6 +29,7 @@ class SearchServiceImpl implements SearchService {
                 "-case/search_result.txt")
 
         ("mkdir /root/TestCases/" + folderName).execute()
+        ("ls /root/TestCases/").execute()
 
         String storedLocation = "/root/TestCases/" + folderName;
         String testCaseLocation = storedLocation + "/search_result.txt"
@@ -55,7 +56,7 @@ class SearchServiceImpl implements SearchService {
         boolean result = testResult.contains("0 failed") == true ? false : true;
 
         //return result
-        println("### SearchService.search START ###")
+        println("### SearchService.search END ###")
         return result
     }
 }
