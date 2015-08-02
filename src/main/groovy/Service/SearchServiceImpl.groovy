@@ -20,16 +20,16 @@ class SearchServiceImpl implements SearchService {
 
     @Override
     boolean search(String keyword) {
-        println("search " + keyword)
-        int postfix = TestCount.testCount.addAndGet(1);
+        int folderName = TestCount.testCount.addAndGet(1);
         keyword = keyword.replaceAll("\\s+", "+")
 
         // Generate Test Case from sample
-        def sampleFile = new File("/Users/jimin/Repository/Bitbucket/robotframework-test-plan" +
-                "/google-search-test-case/search_result.txt")
+        def sampleFile = new File("~/Repository/robotframework-test-plan/google-search-test-case/search_result.txt")
 
-        ("mkdir /Users/jimin/Downloads/TestCases/" + postfix).execute()
-        String storedLocation = "/Users/jimin/Downloads/TestCases/" + postfix;
+        ("mkdir ~/TestCases").execute()
+        ("mkdir ~/TestCases/" + folderName).execute()
+
+        String storedLocation = "~/TestCases/" + folderName;
         String testCaseLocation = storedLocation + "/search_result.txt"
         println("testCaseLocation = " + testCaseLocation)
         println(testCaseLocation)
@@ -37,13 +37,13 @@ class SearchServiceImpl implements SearchService {
         def fileText = sampleFile.text
         fileText = fileText.replaceAll("keyword", keyword)
         storedFile.write(fileText)
-        ("cp /Users/jimin/Repository/Bitbucket/robotframework-test-plan/google-search-test-case/variables.txt "
+        ("cp ~/Repository/robotframework-test-plan/google-search-test-case/variables.txt "
                 + storedLocation).execute()
 
         println("Execute Robot Framework")
         // Execute Robot Framework
         ("cd " + storedLocation).execute()
-        String robotframework = "/Users/jimin/Repository/Bitbucket/robotframework-httplibrary/bin/robotframework";
+        String robotframework = "~/Repository/robotframework-httplibrary/bin/robotframework";
 
         println("Prepare execute test case")
         println("CMD = " + robotframework + " " + testCaseLocation)
