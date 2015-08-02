@@ -23,6 +23,7 @@ class SearchServiceImpl implements SearchService {
 
         // create directory to store each test case
         ("mkdir /root/TestCases/" + folderName).execute()
+        println(("ls -l /root/TestCases").execute().text)
 
         // prepare test case
         String storedLocation = "/root/TestCases/" + folderName;
@@ -31,8 +32,8 @@ class SearchServiceImpl implements SearchService {
         println("testCaseLocation = " + testCaseLocation)
         def storedFile = new File(testCaseLocation)
         def fileText = sampleFile.text
-        fileText = fileText.replaceAll("keyword", keyword)
-        storedFile.write(fileText)
+        def testCase = fileText.replaceAll("keyword", keyword)
+        storedFile.write(testCase)
         ("cp /root/Repository/robotframework-test-plan/google-search-test-case/variables.txt "
                 + storedLocation).execute()
 
