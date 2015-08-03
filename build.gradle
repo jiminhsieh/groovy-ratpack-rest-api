@@ -44,7 +44,6 @@ dependencies {
     compile ratpack.dependency("rx")
     compile ratpack.dependency("hystrix")
     compile ratpack.dependency("pac4j")
-    runtime 'org.slf4j:slf4j-simple:1.7.7'
 }
 
 run {
