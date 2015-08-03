@@ -26,16 +26,17 @@ class SearchServiceImpl implements SearchService {
 
         // create directory to store each test case
         ("mkdir /root/TestCases/" + folderName).execute()
-
+        ("ls").execute()
+        
         // prepare test case
         String storedLocation = "/root/TestCases/" + folderName;
         String testCaseLocation = storedLocation + "/search_result.txt"
         File storedFile = new File(testCaseLocation)
         String fileText = sampleFile.text
         String testCase = fileText.replaceAll("keyword", keyword)
-        printf("### Prepare to write test case ###")
+        println("### Prepare to write test case ###")
         storedFile.write(testCase)
-        printf("### Preare to copy variables.txt")
+        println("### Preare to copy variables.txt")
         ("cp /root/Repository/robotframework-test-plan/google-search-test-case/variables.txt "
                 + storedLocation).execute()
 
