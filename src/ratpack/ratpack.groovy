@@ -25,7 +25,7 @@ ratpack {
             render json("Hello World!")
         }
 
-        get("google-search/:keyword") {
+        get("google-search/:keyword") { SearchService searchService ->
             render json(searchService.search("$pathTokens.keyword"))
         }
     }
