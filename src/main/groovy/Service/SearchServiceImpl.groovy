@@ -1,6 +1,7 @@
 package Service
 
 import POJO.TestCount
+import POJO.TestResult
 import groovy.transform.CompileStatic
 
 /**
@@ -11,14 +12,16 @@ import groovy.transform.CompileStatic
 class SearchServiceImpl implements SearchService {
 
     @Override
-    boolean search(String keyword) {
+    TestResult search(String keyword) {
         println("### SearchService.search START ###")
+        TestResult result = new TestResult()
+        result.searchWord = keyword
 
         int folderName = TestCount.testCount.addAndGet(1);
         keyword = keyword.replaceAll("\\s+", "+")
 
         // Generate Test Case from sample
-        def sampleFile = new File("/root/Repository/robotframework-test-plan/google-search-test" +
+        File sampleFile = new File("/root/Repository/robotframework-test-plan/google-search-test" +
                 "-case/search_result.txt")
 
         // create directory to store each test case
@@ -27,12 +30,10 @@ class SearchServiceImpl implements SearchService {
         // prepare test case
         String storedLocation = "/root/TestCases/" + folderName;
         String testCaseLocation = storedLocation + "/search_result.txt"
-        println("storedLocation = " + storedLocation)
-        println("testCaseLocation = " + testCaseLocation)
-        def storedFile = new File(testCaseLocation)
-        def fileText = sampleFile.text
-        fileText = fileText.replaceAll("keyword", keyword)
-        storedFile.write(fileText)
+        File storedFile = new File(testCaseLocation)
+        String fileText = sampleFile.text
+        String testCase = fileText.replaceAll("keyword", keyword)
+        storedFile.write(testCase)
         ("cp /root/Repository/robotframework-test-plan/google-search-test-case/variables.txt "
                 + storedLocation).execute()
 
@@ -42,9 +43,9 @@ class SearchServiceImpl implements SearchService {
 
         /**
          * TODO: it can be a better way to verify the result, but it maybe need to change source
-         * code of library or use pygoogle
+         * code of robotframework-httplibrary or use pygoogle
          */
-        boolean result = testResult.contains("0 failed") == true ? false : true;
+        result.result = testResult.contains("0 failed") == true ? false : true;
 
         println("### SearchService.search END ###")
         return result
