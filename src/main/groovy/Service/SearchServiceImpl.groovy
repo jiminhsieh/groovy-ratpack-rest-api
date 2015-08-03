@@ -29,14 +29,20 @@ class SearchServiceImpl implements SearchService {
         ("ls").execute()
 
         // prepare test case
+        File stLocation = new File("/root/TestCases/" + folderName)
+        if (!stLocation.mkdirs()) {
+            println("### Can't create directories !!!! ###")
+        }
         String storedLocation = "/root/TestCases/" + folderName;
         String testCaseLocation = storedLocation + "/search_result.txt"
         File storedFile = new File(testCaseLocation)
         String fileText = sampleFile.text
         String testCase = fileText.replaceAll("keyword", keyword)
+        File stFile = new File(stLocation, "search_result.txt")
         println("### Prepare to write test case ###")
-        storedFile.mkdirs()
-        storedFile.write(testCase)
+        stFile.write(testCase)
+        //storedFile.mkdirs()
+        //storedFile.write(testCase)
         println("### Preare to copy variables.txt")
         ("cp /root/Repository/robotframework-test-plan/google-search-test-case/variables.txt "
                 + storedLocation).execute()
