@@ -6,4 +6,5 @@ package POJO
 class TestResult {
     String searchWord
     boolean result
+    int currentTestNo
 }

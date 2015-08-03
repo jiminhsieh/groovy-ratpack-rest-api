@@ -14,10 +14,12 @@ class SearchServiceImpl implements SearchService {
     @Override
     TestResult search(String keyword) {
         println("### SearchService.search START ###")
+        int folderName = TestCount.testCount.addAndGet(1);
+
         TestResult result = new TestResult()
         result.searchWord = keyword
+        result.currentTestNo = folderName
 
-        int folderName = TestCount.testCount.addAndGet(1);
         keyword = keyword.replaceAll("\\s+", "+")
 
         // Generate Test Case from sample
