@@ -14,25 +14,28 @@ class SearchServiceImpl implements SearchService {
     @Override
     TestResult search(String keyword) {
         println("### SearchService.search START ###")
+        int folderName = TestCount.testCount.addAndGet(1);
+
         TestResult result = new TestResult()
         result.searchWord = keyword
+        result.currentTestNo = folderName
 
-        int folderName = TestCount.testCount.addAndGet(1);
         keyword = keyword.replaceAll("\\s+", "+")
 
         // Generate Test Case from sample
         File sampleFile = new File("/root/Repository/robotframework-test-plan/google-search-test" +
                 "-case/search_result.txt")
 
-        // create directory to store each test case
-        ("mkdir /root/TestCases/" + folderName).execute()
-
         // prepare test case
+        File parentLocation = new File("/root/TestCases/" + folderName)
+        if (!parentLocation.mkdirs()) {
+            println("### Can't create directories !!!! ###")
+        }
         String storedLocation = "/root/TestCases/" + folderName;
         String testCaseLocation = storedLocation + "/search_result.txt"
-        File storedFile = new File(testCaseLocation)
         String fileText = sampleFile.text
         String testCase = fileText.replaceAll("keyword", keyword)
+        File storedFile = new File(parentLocation, "search_result.txt")
         storedFile.write(testCase)
         ("cp /root/Repository/robotframework-test-plan/google-search-test-case/variables.txt "
                 + storedLocation).execute()
