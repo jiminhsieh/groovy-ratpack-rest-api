@@ -33,7 +33,9 @@ class SearchServiceImpl implements SearchService {
         File storedFile = new File(testCaseLocation)
         String fileText = sampleFile.text
         String testCase = fileText.replaceAll("keyword", keyword)
+        printf("### Prepare to write test case ###")
         storedFile.write(testCase)
+        printf("### Preare to copy variables.txt")
         ("cp /root/Repository/robotframework-test-plan/google-search-test-case/variables.txt "
                 + storedLocation).execute()
 
