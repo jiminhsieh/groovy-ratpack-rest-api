@@ -1,6 +1,5 @@
-import Config.SetupModule
-import POJO.TestResult
-import Service.SearchService
+import config.SetupModule
+import service.SearchService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import ratpack.jackson.guice.JacksonModule;

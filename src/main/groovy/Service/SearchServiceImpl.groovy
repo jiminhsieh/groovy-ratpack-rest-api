@@ -1,7 +1,7 @@
-package Service
+package service
 
-import POJO.TestCount
-import POJO.TestResult
+import pojo.TestCount
+import pojo.TestResult
 import groovy.transform.CompileStatic
 
 /**
