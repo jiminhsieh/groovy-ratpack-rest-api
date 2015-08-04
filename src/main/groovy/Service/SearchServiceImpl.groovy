@@ -27,26 +27,23 @@ class SearchServiceImpl implements SearchService {
         keyword = keyword.replaceAll("\\s+", "+")
 
         // Generate Test Case from sample
-        File sampleFile = new File("/root/Repository/robotframework-test-plan/google-search-test" +
-                "-case/search_result.txt")
+        File sampleFile = new File(System.getProperty("testCaseSample"), "search_result.txt")
 
         // prepare test case
-        File parentLocation = new File("/root/TestCases/" + folderName)
+        File parentLocation = new File(System.getProperty("testCasesLocation") + folderName)
         if (!parentLocation.mkdirs()) {
-            println("### Can't create directories !!!! ###")
+            logger.warn("### Can't create directories !!!! ###")
         }
-        String storedLocation = "/root/TestCases/" + folderName;
+        String storedLocation = parentLocation.toString();
         String testCaseLocation = storedLocation + "/search_result.txt"
         String fileText = sampleFile.text
         String testCase = fileText.replaceAll("keyword", keyword)
         File storedFile = new File(parentLocation, "search_result.txt")
         storedFile.write(testCase)
-        ("cp /root/Repository/robotframework-test-plan/google-search-test-case/variables.txt "
-                + storedLocation).execute()
+        ("cp " + System.getProperty("variable") + " " + storedLocation).execute()
 
         // execute test
-        String robotframework = "/root/Repository/robotframework-httplibrary/bin/robotframework";
-        String testResult = (robotframework + " " + testCaseLocation).execute().text
+        String testResult = (System.getProperty("robotframework") + " " + testCaseLocation).execute().text
 
         /**
          * TODO: it can be a better way to verify the result, but it maybe need to change source
