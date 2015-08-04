@@ -10,7 +10,7 @@ import static ratpack.jackson.Jackson.json
  * Created by jimin on 7/28/15.
  */
 
-final Logger log = LoggerFactory.getLogger(ratpack.class);
+final Logger logger = LoggerFactory.getLogger(ratpack.class);
 
 ratpack {
     bindings {
@@ -20,7 +20,7 @@ ratpack {
 
     handlers {
         get {
-            println("### Default Path for Testing ###")
+            logger.info("### Default Path for Testing ###")
             render json("Hello World!")
         }
 

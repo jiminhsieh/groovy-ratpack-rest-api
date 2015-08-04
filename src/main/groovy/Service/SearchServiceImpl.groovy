@@ -1,5 +1,7 @@
 package service
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import pojo.TestCount
 import pojo.TestResult
 import groovy.transform.CompileStatic
@@ -11,9 +13,11 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class SearchServiceImpl implements SearchService {
 
+    final Logger logger = LoggerFactory.getLogger(SearchServiceImpl.class);
+
     @Override
     TestResult search(String keyword) {
-        println("### SearchService.search START ###")
+        logger.debug("### search START ###")
         int folderName = TestCount.testCount.addAndGet(1);
 
         TestResult result = new TestResult()
@@ -50,7 +54,7 @@ class SearchServiceImpl implements SearchService {
          */
         result.result = testResult.contains("0 failed") == true ? false : true;
 
-        println("### SearchService.search END ###")
+        logger.debug("### search END ###")
         return result
     }
 }
