@@ -1,7 +1,7 @@
-package Config
+package config
 
-import Service.SearchService
-import Service.SearchServiceImpl
+import service.SearchService
+import service.SearchServiceImpl
 import com.google.inject.AbstractModule
 import groovy.transform.CompileStatic
 

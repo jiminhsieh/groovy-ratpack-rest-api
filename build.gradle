@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'io.ratpack:ratpack-gradle:0.9.19'
+        classpath 'io.ratpack:ratpack-gradle:0.9.18'
     }
 }
 
@@ -44,6 +44,8 @@ dependencies {
     compile ratpack.dependency("rx")
     compile ratpack.dependency("hystrix")
     compile ratpack.dependency("pac4j")
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.5.2'
+    compile 'org.slf4j:slf4j-simple:1.7.7'
 }
 
 run {
