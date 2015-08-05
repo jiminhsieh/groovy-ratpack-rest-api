@@ -55,12 +55,16 @@ class SearchServiceImpl implements SearchService {
 
         // execute test
         String testResult = ("${appConfig.robotframework}" + " " + testCaseLocation).execute().text
-
         /**
          * TODO: it can be a better way to verify the result, but it maybe need to change source
          * code of robotframework-httplibrary or use pygoogle
          */
         result.result = testResult.contains("0 failed") == true ? false : true;
+
+        // move documentation of test result to where we store test case
+        ("mv " + storedLocation + "/log.html").execute()
+        ("mv " + storedLocation + "/output.xml").execute()
+        ("mv " + storedLocation + "/report.html").execute()
 
         logger.debug("### search END ###")
         return result
