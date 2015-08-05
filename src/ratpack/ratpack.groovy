@@ -1,4 +1,7 @@
+import com.fasterxml.jackson.datatype.jsr310.JSR310Module
 import config.SetupModule
+import pojo.config.Application
+import ratpack.config.ConfigData
 import service.SearchService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -14,6 +17,13 @@ final Logger logger = LoggerFactory.getLogger(ratpack.class);
 
 ratpack {
     bindings {
+        ConfigData configData = ConfigData.of(new JSR310Module())
+                .props("$serverConfig.baseDir.file/application.properties")
+                .env()
+                .sysProps()
+                .build()
+        bindInstance(Application, configData.get("/app", Application))
+
         module JacksonModule
         module SetupModule
     }
