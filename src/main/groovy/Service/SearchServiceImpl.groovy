@@ -62,9 +62,9 @@ class SearchServiceImpl implements SearchService {
         result.result = testResult.contains("0 failed") == true ? false : true;
 
         // move documentation of test result to where we store test case
-        ("mv " + storedLocation + "/log.html").execute()
-        ("mv " + storedLocation + "/output.xml").execute()
-        ("mv " + storedLocation + "/report.html").execute()
+        ("mv " + "log.html" + " " + storedLocation).execute()
+        ("mv " + "output.xml" + " " + storedLocation).execute()
+        ("mv " + "report.html" + " " + storedLocation).execute()
 
         logger.debug("### search END ###")
         return result
